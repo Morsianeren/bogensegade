@@ -15,10 +15,11 @@ ALL_TITLES = [SUBJECT_TITLE, SUBSUBJECT_TITLE, AMOUNT_TITLE]
 DELIMITER = ';'
 ENCODING = 'UTF-8-SIG'
 DECIMAL = ','
+THOUSANDS = '.'
 
 # %% Actual code
 # Read the CSV file into a DataFrame
-df = pd.read_csv(DATA_PATH, delimiter=DELIMITER, encoding=ENCODING, decimal=DECIMAL,
+df = pd.read_csv(DATA_PATH, delimiter=DELIMITER, encoding=ENCODING, decimal=DECIMAL, thousands=THOUSANDS,
                        dtype={SUBJECT_TITLE: str, SUBSUBJECT_TITLE: str, AMOUNT_TITLE: float})
 
 # Fill NaN values in SUBSUBJECT_TITLE with a placeholder (e.g., 'No Subcategory')
@@ -68,4 +69,6 @@ result_df['Amount'] = result_df['Amount'].round(2)
 
 # Write the result to a new CSV file
 result_df.to_csv('output.csv', index=False, encoding=ENCODING, decimal=DECIMAL, sep=DELIMITER)
+
+print('Done!')
 # %%
