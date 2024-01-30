@@ -1,38 +1,54 @@
 # %%
+import argparse
 import pandas as pd
 import numpy as np
 
-# %%
+# %% Constants
 
-# Constants
-DATA_PATH = 'raw.csv'
-SUBJECT_TITLE = 'Emne'
-SUBSUBJECT_TITLE = 'Underemne'
-AMOUNT_TITLE = 'Beløb'
+# %% Argument parsing
+parser = argparse.ArgumentParser(description='BudgetMakerPandas')
 
-ALL_TITLES = [SUBJECT_TITLE, SUBSUBJECT_TITLE, AMOUNT_TITLE]
+parser.add_argument('-d', '--delimiter', type=str, default=';', help='Delimiter used in the CSV file')
+parser.add_argument('-e', '--encoding', type=str, default='UTF-8-SIG', help='Encoding of the CSV file')
+parser.add_argument('-dec', '--decimal', type=str, default=',', help='Decimal separator used in the CSV file')
+parser.add_argument('-th', '--thousands', type=str, default='.', help='Thousands separator used in the CSV file')
 
-DELIMITER = ';'
-ENCODING = 'UTF-8-SIG'
-DECIMAL = ','
-THOUSANDS = '.'
+parser.add_argument('-s', '--subject', type=str, default='Emne', help='Title of the subject column')
+parser.add_argument('-ss', '--subsubject', type=str, default='Underemne', help='Title of the subsubject column')
+parser.add_argument('-a', '--amount', type=str, default='Beløb', help='Title of the amount column')
 
-# %% Actual code
+parser.add_argument('-i', '--input', type=str, default='input.csv', help='Path to the input CSV file')
+parser.add_argument('-o', '--output', type=str, default='output.csv', help='Path to the output CSV file')
+
+args = parser.parse_args()
+
+# %% Check if the input file exists
+try:
+    with open(args.input, 'r', encoding=args.encoding) as f:
+        pass
+except FileNotFoundError:
+    print('Input file not found! Make sure {} exists.'.format(args.input))
+    exit()
+
+# %% Main code
 # Read the CSV file into a DataFrame
-df = pd.read_csv(DATA_PATH, delimiter=DELIMITER, encoding=ENCODING, decimal=DECIMAL, thousands=THOUSANDS,
-                       dtype={SUBJECT_TITLE: str, SUBSUBJECT_TITLE: str, AMOUNT_TITLE: float})
+df = pd.read_csv(args.input, delimiter=args.delimiter, encoding=args.encoding, decimal=args.decimal, thousands=args.thousands,
+                       dtype={args.subject: str, args.subsubject: str, args.amount: float})
 
-# Fill NaN values in SUBSUBJECT_TITLE with a placeholder (e.g., 'No Subcategory')
-df[SUBSUBJECT_TITLE].fillna('No Subcategory', inplace=True)
+# Fill NaN values in args.subject with a placeholder (e.g., 'No Category')
+df[args.subject].fillna('No Category', inplace=True)
 
-# Group by SUBJECT_TITLE, SUBSUBJECT_TITLE, and then sum the AMOUNT_TITLE column
-grouped_df = df.groupby([SUBJECT_TITLE, SUBSUBJECT_TITLE])[AMOUNT_TITLE].sum().reset_index()
+# Fill NaN values in subsubject column with a placeholder (e.g., 'No Subcategory')
+df[args.subsubject].fillna('No Subcategory', inplace=True)
+
+# Group by subject, subsubject, and then sum the amount column
+grouped_df = df.groupby([args.subject, args.subsubject])[args.amount].sum().reset_index()
 
 # Replace the placeholder with NaN in the resulting DataFrame
-grouped_df[SUBSUBJECT_TITLE].replace('No Subcategory', np.nan, inplace=True)
+grouped_df[args.subsubject].replace('No Subcategory', np.nan, inplace=True)
 
-# Group by SUBJECT_TITLE, then sum the AMOUNT_TITLE column
-summarized_df = grouped_df.groupby(SUBJECT_TITLE)[AMOUNT_TITLE].sum().reset_index()
+# Group by subject, then sum the amount column
+summarized_df = grouped_df.groupby(args.subject)[args.amount].sum().reset_index()
 
 # Rename columns for clarity
 summarized_df.columns = ['Category', 'Summed Amount']
@@ -51,12 +67,12 @@ for index, row in summarized_df.iterrows():
     category_df = pd.DataFrame({'Category': [row['Category']], 'Amount': [row['Summed Amount']]})
     
     # Filter the grouped DataFrame for the current category
-    category_data = grouped_df[grouped_df[SUBJECT_TITLE] == row['Category']]
+    category_data = grouped_df[grouped_df[args.subject] == row['Category']]
     
     # Iterate through the rows of the category
     for _, sub_row in category_data.iterrows():
-        if pd.notna(sub_row[SUBSUBJECT_TITLE]):
-            subcategory_df = pd.DataFrame({'Category': [f" - {sub_row[SUBSUBJECT_TITLE]}"], 'Amount': [sub_row[AMOUNT_TITLE]]})
+        if pd.notna(sub_row[args.subsubject]):
+            subcategory_df = pd.DataFrame({'Category': [f" - {sub_row[args.subsubject]}"], 'Amount': [sub_row[args.amount]]})
             category_df = pd.concat([category_df, subcategory_df], ignore_index=True)
     
     result_dfs.append(category_df)
@@ -68,7 +84,8 @@ result_df = pd.concat(result_dfs, ignore_index=True)
 result_df['Amount'] = result_df['Amount'].round(2)
 
 # Write the result to a new CSV file
-result_df.to_csv('output.csv', index=False, encoding=ENCODING, decimal=DECIMAL, sep=DELIMITER)
+result_df.to_csv(args.output, index=False, encoding=args.encoding, float_format='%.2f',
+                 decimal=args.decimal, sep=args.delimiter)
 
 print('Done!')
 # %%
