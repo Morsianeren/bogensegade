@@ -1,4 +1,4 @@
-# %%
+# %% Imports
 import argparse
 import pandas as pd
 import numpy as np
@@ -36,16 +36,16 @@ df = pd.read_csv(args.input, delimiter=args.delimiter, encoding=args.encoding, d
                        dtype={args.subject: str, args.subsubject: str, args.amount: float})
 
 # Fill NaN values in args.subject with a placeholder (e.g., 'No Category')
-df[args.subject].fillna('No Category', inplace=True)
+df[args.subject] = df[args.subject].fillna('No Category')
 
 # Fill NaN values in subsubject column with a placeholder (e.g., 'No Subcategory')
-df[args.subsubject].fillna('No Subcategory', inplace=True)
+df[args.subsubject] = df[args.subsubject].fillna('No Subcategory')
 
 # Group by subject, subsubject, and then sum the amount column
 grouped_df = df.groupby([args.subject, args.subsubject])[args.amount].sum().reset_index()
 
 # Replace the placeholder with NaN in the resulting DataFrame
-grouped_df[args.subsubject].replace('No Subcategory', np.nan, inplace=True)
+grouped_df[args.subsubject] = grouped_df[args.subsubject].replace('No Subcategory', np.nan)
 
 # Group by subject, then sum the amount column
 summarized_df = grouped_df.groupby(args.subject)[args.amount].sum().reset_index()
