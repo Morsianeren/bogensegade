@@ -15,11 +15,17 @@ def docx_to_pdf(docx_path, pdf_path):
     word.Quit()
 
 if __name__ == "__main__":
-    folder_path = input("Enter the folder path containing .docx files: ")
+    folder_path = os.getcwd()
+    pdf_folder = os.path.join(folder_path, 'PDF')
+
+    # Create 'PDF' folder if it does not exist
+    if not os.path.exists(pdf_folder):
+        os.makedirs(pdf_folder)
     
     for file in os.listdir(folder_path):
         if file.endswith(".docx"):
             docx_file = os.path.join(folder_path, file)
-            pdf_file = os.path.join(folder_path, os.path.splitext(file)[0] + '.pdf')
+            pdf_file_name = os.path.splitext(file)[0] + '.pdf'
+            pdf_file = os.path.join(pdf_folder, pdf_file_name)
             docx_to_pdf(docx_file, pdf_file)
             print(f'Converted: {file} to PDF')
