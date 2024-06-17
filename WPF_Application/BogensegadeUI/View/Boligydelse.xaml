@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="BogensegadeUI.View.Boligydelse"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BogensegadeUI.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0"
+                Name="btnLoadApartmentInfo" Content="Load apartment info"
+                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Height="40" Width="150" Margin="10"
+                Click="btnLoadApartmentInfo_Click"
+                />
+            
+            <Button Grid.Column="1"
+                    Name="btnLoadAccountStatement" Content="Load account statement"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Height="40" Width="150" Margin="10"
+                    Click="btnLoadAccountStatement_Click"
+                    />
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+            
+            <DataGrid Grid.Row="1"
+                      Name="datagridApartmentInfo"
+                      AutoGenerateColumns="True"
+                  Margin="10"
+            />
+            
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Button Name="btnBuildOverview" Content="Build overview" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Height="40" Width="150" Margin="10"
+                    />
+        </Grid>
+        
+        
+    </Grid>
+</UserControl>

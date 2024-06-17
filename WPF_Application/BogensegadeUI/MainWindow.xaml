@@ -1,0 +1,67 @@
+﻿<Window x:Class="BogensegadeUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BogensegadeUI"
+        xmlns:boligydelse="clr-namespace:BogensegadeUI.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>    <!-- Menu go here -->
+            <RowDefinition />               <!-- Content go here -->
+            <RowDefinition Height="20"/>    <!-- Footer goes here -->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Menu bar -->
+        <Grid Grid.Row="0" Name="gridMenubar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0"
+                Content="Boligydelse" Name="btnBoligydelse"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Margin="10"
+                Click="btnBoligydelse_Click"
+                />
+
+            <Button Grid.Column="1"
+                Content="Budget" Name="btnBudget"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Margin="10"
+                Click="btnBudget_Click"
+                />
+
+            <Button Grid.Column="2"
+                Content="Venteliste" Name="btnVenteliste"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Margin="10"
+                Click="btnVenteliste_Click"
+                />
+
+        </Grid>
+        
+        
+        <!-- Content -->
+        <Grid Name="gridContent" Grid.Row="1">
+            
+            
+        </Grid>
+        
+
+        <!-- Footer -->
+        <Grid Name="gridFooter" Grid.Row="2">
+
+
+        </Grid>
+
+
+    </Grid>
+</Window>
