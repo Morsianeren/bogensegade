@@ -1,2 +1,3 @@
-apartment_info.json
-./*json
+*.json
+*.csv
+*.xlsx
