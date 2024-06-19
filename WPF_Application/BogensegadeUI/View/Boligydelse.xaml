@@ -18,20 +18,34 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
             
             <Button Grid.Column="0"
                 Name="btnLoadApartmentInfo" Content="Load apartment info"
                 HorizontalAlignment="Center" VerticalAlignment="Center" 
-                Height="40" Width="150" Margin="10"
+                Height="40" Width="150" Margin="10,10,10,0"
                 Click="btnLoadApartmentInfo_Click"
                 />
-            
+
+            <TextBlock Grid.Row="1" Name="textBlockApartmentFName"
+                       Text="Select a file" 
+                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                       Width="150"/>
+
             <Button Grid.Column="1"
                     Name="btnLoadAccountStatement" Content="Load account statement"
                     HorizontalAlignment="Center" VerticalAlignment="Center" 
-                    Height="40" Width="150" Margin="10"
+                    Height="40" Width="150" Margin="10,10,10,0"
                     Click="btnLoadAccountStatement_Click"
                     />
+
+            <TextBlock Grid.Row="1" Grid.Column="1" Name="textBlockAccountFName"
+                       Text="Select a file" 
+                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                       Width="150"/>
         </Grid>
 
 
@@ -40,15 +54,30 @@
             <DataGrid Grid.Row="1"
                       Name="datagridApartmentInfo"
                       AutoGenerateColumns="True"
-                  Margin="10"
+                      Margin="10"
+                      AddingNewItem="datagridApartmentInfo_AddingNewItem"
             />
             
         </Grid>
 
         <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
             <Button Name="btnBuildOverview" Content="Build overview" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" 
                     Height="40" Width="150" Margin="10"
+                    Click="btnBuildOverview_Click"
+                    IsEnabled="False"
+                    />
+
+            <Button Grid.Column="1" Name="btnSaveApartmentInfo"
+                    Content="Save apartment info"
+                    Height="40" Width="150" Margin="10"
+                    Click="btnSaveApartmentInfo_Click"
+                    IsEnabled="False"
                     />
         </Grid>
         
