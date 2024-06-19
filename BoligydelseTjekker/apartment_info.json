@@ -1,0 +1,82 @@
+[
+    {
+        "Id": "st.tv.",
+        "Boligafgift": 7757,
+        "Faellesudgifter": 1489,
+        "Aconto varme": 500,
+        "Aconto vand": 200,
+        "Kontobeskeder": "Fra DIANA ELIZABETH"
+    },
+    {
+        "Id": "st.th.",
+        "Boligafgift": 5886,
+        "Faellesudgifter": 1232,
+        "Aconto varme": 400,
+        "Aconto vand": 200,
+        "Kontobeskeder": "Johan-st.th;St.th -Johan"
+    },
+    {
+        "Id": "1.tv.",
+        "Boligafgift": 8044,
+        "Faellesudgifter": 1614,
+        "Aconto varme": 500,
+        "Aconto vand": 200,
+        "Kontobeskeder": "ABFBogensegade 7,1tv;Rene for meget 2023"
+    },
+    {
+        "Id": "1.th.",
+        "Boligafgift": 6174,
+        "Faellesudgifter": 1283,
+        "Aconto varme": 400,
+        "Aconto vand": 200,
+        "Kontobeskeder": "Husleje 1th;1 th"
+    },
+    {
+        "Id": "2.tv.",
+        "Boligafgift": 8173,
+        "Faellesudgifter": 1577,
+        "Aconto varme": 500,
+        "Aconto vand": 200,
+        "Kontobeskeder": "2tv - Birthe"
+    },
+    {
+        "Id": "2.th.",
+        "Boligafgift": 6269,
+        "Faellesudgifter": 1299,
+        "Aconto varme": 400,
+        "Aconto vand": 200,
+        "Kontobeskeder": "2.th Kristina Momsen;2. th - Kalle & Thea"
+    },
+    {
+        "Id": "3.tv.",
+        "Boligafgift": 8299,
+        "Faellesudgifter": 1599,
+        "Aconto varme": 500,
+        "Aconto vand": 200,
+        "Kontobeskeder": "Fra Jonas Beier Vads;Jonas for meget 2023;Indbetalingskort K 87134032-25.01"
+    },
+    {
+        "Id": "3.th.",
+        "Boligafgift": 6364,
+        "Faellesudgifter": 1317,
+        "Aconto varme": 400,
+        "Aconto vand": 200,
+        "Kontobeskeder": "3.th  husleje Sarah;81334154050979;Sarah 3.th;3.th Sarah"
+    },
+    {
+        "Id": "4.tv.",
+        "Boligafgift": 9903,
+        "Faellesudgifter": 1883,
+        "Aconto varme": 500,
+        "Aconto vand": 200,
+        "Kontobeskeder": "4.tv. Magnus;Kurt for meget 2023"
+    },
+    {
+        "Id": "4.th.",
+        "Boligafgift": 7942,
+        "Faellesudgifter": 1536,
+        "Aconto varme": 400,
+        "Aconto vand": 200,
+        "Kontobeskeder": "BG7 4. th."
+    }
+]
